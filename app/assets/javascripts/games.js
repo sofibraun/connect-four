@@ -9,6 +9,7 @@ $(function(){
         var lastRow = data.last_move[0];
         var lastCol = data.last_move[1];
         $("[data-col=" + lastCol + "][data-row=" + lastRow + "] div").addClass(data.player);
+        console.log('lastRow: ' + lastRow + ' lastCol: ' + lastCol);
       } else {
         alert(data.message);
       }
