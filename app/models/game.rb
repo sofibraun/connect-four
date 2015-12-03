@@ -23,10 +23,10 @@ class Game < ActiveRecord::Base
   end
 
   def reset!
-    self.current_player = player_1
+    self.current_turn_id = player_1_id
     save!
     board.delete
-    Board.create(player_1_id, player_2_id, 7, 7)
+    Board.create(player_1_id: player_1_id, player_2_id: player_2_id, rows: 7, cols: 7, game_id: self.id)
   end
 
   private

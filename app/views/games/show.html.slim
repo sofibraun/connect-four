@@ -1,5 +1,7 @@
 .row 
-  .col-sm-12    
+  .col-sm-12
+    .pull-right
+      = link_to "Reset", reset_game_path(@player), method: :post, class: 'btn btn-danger', data: { confirm: "Are you sure?" }
     #board data-play-url=(play_game_path(@player))
       table
         tbody

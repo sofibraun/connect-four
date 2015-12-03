@@ -4,10 +4,8 @@ Rails.application.routes.draw do
     member do
       get  'refresh'
       post 'play', format: :json
-    end
-    collection do
       post 'reset'
-    end
+    end    
   end
 
   root 'games#index'

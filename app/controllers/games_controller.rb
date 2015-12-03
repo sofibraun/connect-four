@@ -11,9 +11,8 @@ class GamesController < ApplicationController
 
   def play
     player = params[:id].to_i
-    column = params[:column].to_i    
     @game = Game.last
-    position = @game.play!(column, player)
+    position = @game.play!(params[:column].to_i, player)
     render json: { status: 'ok', game: @game,
                    last_move: position,
                    player: (player == @game.player_1_id ? 'player_1' : 'player_2') }    
@@ -26,6 +25,7 @@ class GamesController < ApplicationController
   end
 
   def reset
-    
+    Game.last.reset!
+    redirect_to game_path(params[:id])
   end
 end
