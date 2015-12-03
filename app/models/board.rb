@@ -34,7 +34,7 @@ class Board < ActiveRecord::Base
     self.cells = Array.new(rows) { Array.new(cols) }     
   end
 
-  def won_horizontally?(player_1, position)
+  def won_horizontally?(player_1, position)    
     count_left = count_in_line(player_1, position, 0, -1)
     count_right = count_in_line(player_1, position, 0, 1)
     (count_left + count_right + 1) >= 4
@@ -57,14 +57,15 @@ class Board < ActiveRecord::Base
     (count_diagonal_up + count_diagonal_down + 1) >= 4
   end
 
-  def count_in_line(player_id, position, row_incrementor, col_incrementor)
+  def count_in_line(player_id, position, row_incrementor, col_incrementor)    
     count = 0
     row = position[0]
     col = position[1]
-    while(count < 4) do
+    while(count < 3) do
+      byebug if position == [6,0]
       row += row_incrementor
       col += col_incrementor
-      if col < 0 || row < 0 || col > (cols - 1) || row > (rows - 1) || cells[row][col] != player_id
+      if col < 0 || row < 0 || col > (cols - 1) || row > (rows - 1) || cells[row][col].to_i != player_id
         return count
       else
         count += 1

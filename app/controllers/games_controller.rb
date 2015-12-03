@@ -12,7 +12,7 @@ class GamesController < ApplicationController
   def play
     player = params[:id].to_i
     @game = Game.last
-    position = @game.play!(params[:column].to_i, player)
+    position = @game.play!(params[:column].to_i, player.to_i)
     render json: { status: 'ok', game: @game,
                    last_move: position,
                    player: (player == @game.player_1_id ? 'player_1' : 'player_2') }    

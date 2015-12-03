@@ -14,7 +14,7 @@ class Game < ActiveRecord::Base
     raise(NotYourTurnException, 'not your turn') if player_id != current_turn_id 
     
     position = board.play!(column, player_id)
-    self.current_turn_id = (player_1_id == player_id ? player_2_id : player_1_id)
+    self.current_turn_id = (player_1_id == player_id ? player_2_id : player_1_id)    
     if board.check_for_winner(position, player_id)
       self.winner_id = player_id
     end

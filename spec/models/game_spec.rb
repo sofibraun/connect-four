@@ -11,13 +11,13 @@ describe Board do
 
     context 'when the user won horizontally' do
       before(:each) do
-        @game.play(2, 1)
-        @game.play(0, 2)
-        @game.play(1, 1)
-        @game.play(1, 2)
-        @game.play(4, 1)
-        @game.play(4, 2)
-        @game.play(3, 1)
+        @game.play!(2, 1)
+        @game.play!(0, 2)
+        @game.play!(1, 1)
+        @game.play!(1, 2)
+        @game.play!(4, 1)
+        @game.play!(4, 2)
+        @game.play!(3, 1)
       end
 
       it 'finds a winner' do
@@ -27,13 +27,13 @@ describe Board do
 
     context 'when the user won vertically' do
       before(:each) do
-        @game.play(2, 1)
-        @game.play(0, 2)
-        @game.play(2, 1)
-        @game.play(0, 2)
-        @game.play(2, 1)
-        @game.play(0, 2)
-        @game.play(2, 1)
+        @game.play!(2, 1)
+        @game.play!(0, 2)
+        @game.play!(2, 1)
+        @game.play!(0, 2)
+        @game.play!(2, 1)
+        @game.play!(0, 2)
+        @game.play!(2, 1)
       end
 
       it 'finds a winner' do
@@ -43,17 +43,17 @@ describe Board do
 
     context 'when the user won in a left diagonal' do
       before(:each) do
-        @game.play(0, 1)
-        @game.play(0, 2)
-        @game.play(0, 1)
-        @game.play(1, 2)
-        @game.play(0, 1)
-        @game.play(1, 2)
-        @game.play(1, 1)
-        @game.play(2, 2)
-        @game.play(2, 1)
-        @game.play(4, 2)
-        @game.play(3, 1)
+        @game.play!(0, 1)
+        @game.play!(0, 2)
+        @game.play!(0, 1)
+        @game.play!(1, 2)
+        @game.play!(0, 1)
+        @game.play!(1, 2)
+        @game.play!(1, 1)
+        @game.play!(2, 2)
+        @game.play!(2, 1)
+        @game.play!(4, 2)
+        @game.play!(3, 1)
       end
 
       it 'finds a winner' do
@@ -63,17 +63,17 @@ describe Board do
 
     context 'when the user won in a right diagonal' do
       before(:each) do        
-        @game.play(0, 1)
-        @game.play(1, 2)
-        @game.play(1, 1)
-        @game.play(2, 2)
-        @game.play(3, 1)
-        @game.play(2, 2)
-        @game.play(2, 1)
-        @game.play(3, 2)
-        @game.play(3, 1)
-        @game.play(4, 2)
-        @game.play(3, 1)
+        @game.play!(0, 1)
+        @game.play!(1, 2)
+        @game.play!(1, 1)
+        @game.play!(2, 2)
+        @game.play!(3, 1)
+        @game.play!(2, 2)
+        @game.play!(2, 1)
+        @game.play!(3, 2)
+        @game.play!(3, 1)
+        @game.play!(4, 2)
+        @game.play!(3, 1)
       end
 
       it 'finds a winner' do
