@@ -72,5 +72,4 @@ class Board < ActiveRecord::Base
     end
     return count
   end
-
 end

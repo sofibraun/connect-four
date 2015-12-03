@@ -4,6 +4,7 @@ $(function(){
     var el = $(e.target);
     var col = el.data("col");
     var url = $('#board').data("play-url");
+    console.log('column: ' + col);
     $.post(url, { "column": col } , function( data ) {
       if (data.status == 'ok') {
         if (data.game.winner_id) {

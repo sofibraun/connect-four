@@ -1,6 +1,7 @@
 class Game < ActiveRecord::Base
 
   class NotYourTurnException < Exception; end
+  class FinishedGameException < Exception; end
 
   validates_presence_of :player_1_id, :player_2_id
 
@@ -9,6 +10,7 @@ class Game < ActiveRecord::Base
   after_create :create_board
 
   def play!(column, player_id)
+    raise(FinishedGameException, "the game already has a winner! The winner is player #{self.winner_id}") if self.winner_id.present?
     raise(NotYourTurnException, 'not your turn') if player_id != current_turn_id 
     
     position = board.play!(column, player_id)
