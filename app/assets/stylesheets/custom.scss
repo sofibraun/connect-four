@@ -1,0 +1,22 @@
+body { padding-top: 70px; }
+
+#board {
+  width: 100%;
+  min-height: 100%;
+  table{    
+    background-color: #428bca;
+    text-align: center;
+    margin: auto;
+    td {      
+      padding: 5px;      
+      div{
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+      }
+      .empty { background-color: #FFFFFF; }
+      .player_1 { background-color: #FFBA03 }
+      .player_2 { background-color: #D60C0C }
+    }
+  }
+}

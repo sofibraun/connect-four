@@ -11,9 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20151203144843) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "boards", force: :cascade do |t|
+    t.integer "game_id"
+    t.integer "player_1_id"
+    t.integer "player_2_id"
+    t.integer "rows"
+    t.integer "cols"
+    t.text    "cells",       array: true
+  end
+
+  create_table "games", force: :cascade do |t|
+    t.integer "player_1_id"
+    t.integer "player_2_id"
+    t.integer "board_id"
+    t.integer "winner_id"
+    t.integer "current_turn_id"
+  end
 
 end

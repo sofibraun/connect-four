@@ -1,0 +1,27 @@
+.row
+  .col-sm-12
+    / Show who's turn is it
+.row 
+  .col-sm-12    
+    #board data-play-url=(play_game_path(@player))
+      table
+        tbody
+          tr.btn-row
+            - @board.cols.times do |col|
+              td 
+                = link_to '#', class: 'btn btn-default drop-chip', data: { col: col } 
+                  i.fa.fa-arrow-down
+          - @board.rows.times do |row|
+            tr
+              - @board.cols.times do |col|
+                td data-col=(col) data-row=(row)
+                  / TODO move to helper
+                  - if @board.cells[row][col] == @game.player_1_id.to_s
+                    .player_1
+                  - elsif @board.cells[row][col] == @game.player_2_id.to_s
+                    .player_2
+                  - else
+                    .empty
+
+
+

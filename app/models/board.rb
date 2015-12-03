@@ -1,42 +1,24 @@
-class Board
+class Board < ActiveRecord::Base
 
-  attr_reader :player_1, :player_2, :rows, :cols, :current_player
+  class ColumnIsFullException < Exception; end
 
-  def initialize(player_1, player_2, rows=7, cols=7)
-    @player_1 = player_1
-    @player_2 = player_2
-    @rows = rows
-    @cols = cols
-    @current_player = @player_1
-    initialize_board
-  end
+  belongs_to :game
+  validates_presence_of :player_1_id, :player_2_id, :rows, :cols
 
-  def reset
-    @current_player = player_1
-    initialize_board
-  end
+  before_create :initialize_board
 
-  def play(column, player_id)
-    row = find_free_row(column)
-    if !row.nil?
-      drop_chip(row, column, player_id)
-      check_for_winner([row, column], player_id)
-    end
-  end
-
-  def drop_chip(row, column, player_id)
-    if @current_player == player_id && @cells[row][column].drop_chip(player_id)
-      @current_player = (@player_1 == player_id ? @player_2 : @player_1)
-    else
-      false
-    end
+  def play!(column, player_id)
+    row = find_free_row(column)    
+    self.cells[row][column] = player_id      
+    save
+    [row, column]
   end
 
   def find_free_row(column) 
-    for row in (@rows-1).downto(0) do
-      return row if @cells[row][column].is_free?
+    for row in (rows-1).downto(0) do
+      return row if cells[row][column].nil?
     end
-    return nil
+    raise ColumnIsFullException, 'column is full'
   end
 
   def check_for_winner(last_move, player_id)
@@ -49,14 +31,7 @@ class Board
   private
 
   def initialize_board 
-    @cells = []
-    for x in 0...rows do
-      row = []
-      for y in 0...cols do
-        row << Cell.new(x, y)
-      end 
-      @cells << row
-    end
+    self.cells = Array.new(rows) { Array.new(cols) }     
   end
 
   def won_horizontally?(player_1, position)
@@ -89,7 +64,7 @@ class Board
     while(count < 4) do
       row += row_incrementor
       col += col_incrementor
-      if col < 0 || row < 0 || col > (@cols - 1) || row > (@rows - 1) || !@cells[row][col].occupied_by?(player_id)
+      if col < 0 || row < 0 || col > (cols - 1) || row > (rows - 1) || cells[row][col] != player_id
         return count
       else
         count += 1
