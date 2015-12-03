@@ -61,8 +61,7 @@ class Board < ActiveRecord::Base
     count = 0
     row = position[0]
     col = position[1]
-    while(count < 3) do
-      byebug if position == [6,0]
+    while(count < 3) do      
       row += row_incrementor
       col += col_incrementor
       if col < 0 || row < 0 || col > (cols - 1) || row > (rows - 1) || cells[row][col].to_i != player_id
