@@ -1,7 +1,7 @@
 $(function(){
 
   $('.drop-chip').click(function(e){
-    var el = $(e.target);
+    var el = $(e.currentTarget);
     var col = el.data("col");
     var url = $('#board').data("play-url");
     console.log('column: ' + col);
