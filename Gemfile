@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby "2.2.2"
+
 gem 'rails', '4.2.5'
 
 gem 'coffee-rails', '~> 4.1.0'
@@ -12,6 +14,8 @@ gem 'slim', '~> 3.0.6'
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
 gem 'unicorn'
+
+gem 'rails_12factor', group: :production
 
 group :development, :test do
   gem 'byebug'
